@@ -1,0 +1,503 @@
+/* Base Styles */
+:root {
+    --primary-color: #6a4c93;
+    --secondary-color: #8a5a44;
+    --accent-color: #f8c537;
+    --text-light: #f5f5f5;
+    --text-dark: #333;
+    --paper-color: #fff9e6;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nostalgia Sans', sans-serif;
+    color: var(--text-dark);
+    background-color: #f9f4e8;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Particles Background */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Header Styles */
+.parallax-header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(106, 76, 147, 0.7), rgba(138, 90, 68, 0.7)), 
+                url('class-photo.jpg') center/cover no-repeat fixed;
+    color: var(--text-light);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-content {
+    z-index: 2;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.logo-container {
+    margin-bottom: 2rem;
+}
+
+.floating-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid var(--accent-color);
+    box-shadow: var(--shadow);
+    animation: float 6s ease-in-out infinite;
+}
+
+.nostalgia-title {
+    font-size: 4rem;
+    margin: 1rem 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.title-word {
+    display: inline-block;
+    margin: 0 0.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
+}
+
+.title-word:nth-child(1) { animation-delay: 0.3s; }
+.title-word:nth-child(2) { animation-delay: 0.6s; }
+.title-word:nth-child(3) { animation-delay: 0.9s; }
+
+.subtitle {
+    font-size: 1.5rem;
+    font-family: 'Schoolbell', cursive;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+}
+
+/* Scrolldown Animation */
+.scrolldown-animation {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scrolldown-animation span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid var(--accent-color);
+    border-right: 2px solid var(--accent-color);
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: scrollDown 2s infinite;
+}
+
+.scrolldown-animation span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.scrolldown-animation span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+/* Memory Portal Section */
+.memory-portal {
+    padding: 5rem 2rem;
+    background-color: white;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 3px;
+}
+
+.portal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portal-card {
+    perspective: 1000px;
+    height: 300px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.portal-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.card-front {
+    background: linear-gradient(135deg, var(--primary-color), #8a5a44);
+    color: white;
+}
+
+.portal-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.card-back {
+    background-color: var(--paper-color);
+    transform: rotateY(180deg);
+    border: 1px solid #ddd;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.portal-btn {
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.portal-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Anthem Section */
+.anthem-section {
+    padding: 3rem 2rem;
+    background: linear-gradient(rgba(248, 197, 55, 0.1), rgba(106, 76, 147, 0.1));
+    text-align: center;
+}
+
+.music-player {
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+/* Gratitude Wall */
+.gratitude-wall {
+    padding: 5rem 2rem;
+    background-color: var(--paper-color);
+}
+
+.message-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.message-paper {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    position: relative;
+    transform: rotate(-2deg);
+    transition: all 0.3s ease;
+    border-top: 15px solid var(--accent-color);
+}
+
+.message-paper:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.message-paper p {
+    font-family: 'Schoolbell', cursive;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.signature {
+    display: block;
+    text-align: right;
+    font-style: italic;
+    color: var(--secondary-color);
+}
+
+.add-message-btn {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    max-width: 250px;
+}
+
+.add-message-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3rem 2rem 1rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.footer-logo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid var(--accent-color);
+    transition: transform 0.5s ease;
+}
+
+.footer-logo img:hover {
+    transform: rotate(360deg);
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.link-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.link-group h4 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+.link-group a {
+    display: block;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.link-group a:hover {
+    color: var(--accent-color);
+    padding-left: 5px;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+.feedback-section {
+    max-width: 400px;
+}
+
+.feedback-section h4 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+.memory-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.memory-form button {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.memory-form button:hover {
+    background-color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scrollDown {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px, -20px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(20px, 20px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nostalgia-title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .portal-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .nostalgia-title {
+        font-size: 2rem;
+    }
+    
+    .portal-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portal-card {
+        height: 250px;
+    }
+}
+
+
+/* created by Saurabh aditya;) modified by ai:) */
